@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Typing Tutor – Pemanasan asdf</title>
+<style>
+:root{--bg:#fdf3dc;--ink:#26204a;--card:#fffdf7;--line:#26204a;--blue:#3b82f6;--org:#f97316;--grn:#16a34a;--sun:#ffc93c;--mute:#6b6590;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1738;--ink:#fff4dc;--card:#2a2456;--line:#fff4dc;--mute:#b9b2e0}}
+:root[data-theme="dark"]{--bg:#1b1738;--ink:#fff4dc;--card:#2a2456;--line:#fff4dc;--mute:#b9b2e0}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Comic Sans MS",system-ui,sans-serif;font-size:18px}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;max-width:900px;margin:0 auto}
+header b{font-size:20px}
+#sc{background:var(--sun);color:#26204a;border-radius:99px;padding:6px 16px;font-weight:700;border:3px solid var(--line)}
+main{max-width:900px;margin:0 auto;padding:0 18px 40px}
+h1{font-size:clamp(28px,6vw,44px);margin:8px 0}
+h2{font-size:clamp(22px,4.5vw,30px);margin:10px 0}
+.sub,.intro{color:var(--mute);margin:4px 0 14px}
+button{font:inherit;color:inherit;cursor:pointer}
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.mb{position:relative;text-align:left;background:var(--card);border:3px solid var(--line);border-radius:18px;padding:14px 16px;box-shadow:0 5px 0 var(--line);display:grid;gap:2px}
+.mb>span{font-size:38px}.mb small{font-size:15px;color:var(--mute)}.mb em{position:absolute;right:12px;top:10px;font-style:normal;font-size:26px}
+.mb:hover{transform:translateY(-2px)}.mb:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line)}
+.top{display:flex;gap:12px;align-items:center;margin-bottom:6px}
+.back{background:var(--card);border:3px solid var(--line);border-radius:12px;padding:6px 12px}
+.top span{font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:560px){.grid{grid-template-columns:repeat(2,1fr)}}
+.pc{background:var(--card);border:3px solid var(--line);border-radius:18px;padding:10px;box-shadow:0 5px 0 var(--line);display:grid;gap:4px;justify-items:center}
+.pc svg{width:100%;max-width:130px}
+.pc:hover{transform:translateY(-2px)}
+.pc.ok{background:#bbf7d0;color:#14532d}
+.msg{min-height:30px;font-weight:700;margin:10px 0}
+.msg.good{color:var(--grn)}.msg.bad{color:var(--org)}
+.stage{position:relative;height:340px;background:var(--card);border:3px solid var(--line);border-radius:18px;overflow:hidden;user-select:none;-webkit-user-select:none;cursor:default}
+.tg{position:absolute;width:90px;text-align:center;font-size:58px;line-height:1.1;cursor:pointer;animation:fl 2s ease-in-out infinite}
+.tg i{display:block;font-style:normal;font-size:14px;font-weight:700;color:#fff;border-radius:99px;padding:2px 8px;margin-top:2px}
+.tg.pop{animation:pop .45s forwards;pointer-events:none}
+.tg.wig{animation:wig .35s}
+@keyframes fl{50%{transform:translateY(-8px)}}
+@keyframes pop{40%{transform:scale(1.5) rotate(10deg)}100%{transform:scale(0);opacity:0}}
+@keyframes wig{25%{transform:rotate(-14deg)}75%{transform:rotate(14deg)}}
+.shake{animation:wig .35s}
+.hud{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:700}
+.hud svg{width:56px}
+.bar{height:14px;background:var(--card);border:3px solid var(--line);border-radius:99px;width:min(220px,50vw);overflow:hidden}
+.bar div{height:100%;background:var(--grn);width:0;transition:width .3s}
+.card{background:var(--card);border:3px solid var(--line);border-radius:22px;padding:22px;text-align:center;box-shadow:0 6px 0 var(--line)}
+.big{font-size:72px}
+.go{background:var(--sun);color:#26204a;border:3px solid var(--line);border-radius:14px;padding:10px 22px;font-weight:700;box-shadow:0 4px 0 var(--line);margin-top:10px}
+.learn{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.learn .pc{cursor:default;text-align:center}.learn p{margin:0;font-size:15px}
+.bigmouse{width:min(260px,70vw);display:block;margin:10px auto}
+.bigmouse path{cursor:pointer;transition:fill .15s}
+.opts{display:grid;gap:10px;margin-top:10px}
+.opts button{background:var(--card);border:3px solid var(--line);border-radius:14px;padding:12px;text-align:left}
+.opts button.ok{background:#bbf7d0;color:#14532d}
+.f{display:grid;gap:12px;max-width:340px;margin:14px auto;text-align:left}
+.f input,.f select,#fl{display:block;width:100%;font:inherit;padding:10px 12px;border:3px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);margin-top:4px}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:16px;background:var(--card)}
+#fl{width:auto;display:inline-block;margin:0}small{font-size:13px;color:var(--mute)}
+th,td{border:2px solid var(--line);padding:6px 8px;text-align:left}
+textarea{width:100%;height:140px;font:14px monospace;background:var(--card);color:var(--ink);border:3px solid var(--line);border-radius:12px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;padding:18px;z-index:9}
+.ov .card{max-width:360px;width:100%}.bt{display:flex;gap:10px;justify-content:center;margin-top:10px}.bt .go{margin-top:0}
+.ov input{font:inherit;width:100%;padding:10px 12px;border:3px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.en{display:block}.id{display:block;font-size:.72em;font-weight:400;color:var(--mute);margin-top:2px}
+body.noid .id{display:none}.tg i .id{color:#fff;font-size:11px;margin:0}
+.blank{display:inline-block;min-width:90px;border-bottom:4px solid var(--blue);text-align:center;color:var(--blue);font-weight:700;padding:0 6px}.blank.f{border-bottom-color:var(--grn);color:var(--grn)}
+.sent{font-size:clamp(20px,4.2vw,30px);line-height:1.6;margin:10px 0}.sent .id{line-height:1.5}
+.mb.wide{width:100%;margin-top:14px}#lg{padding:4px 10px;margin-right:8px}
+.pc{position:relative}.pc.sel{background:#bbf7d0;color:#14532d}.pc.sel::after{content:"✓";position:absolute;top:4px;right:10px;font-size:28px;color:#16a34a}
+.opts button.dim{opacity:.4;text-decoration:line-through;cursor:not-allowed}.opts.lk{pointer-events:none}.opts.lk button:not(.dim){opacity:.6}
+.go:disabled{opacity:.5;cursor:not-allowed}
+.desk{position:relative;height:340px;border:3px solid var(--line);border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#60a5fa,#a78bfa);user-select:none;-webkit-user-select:none;cursor:default}
+.ic{position:absolute;width:104px;text-align:center;padding:6px;border:2px solid transparent;border-radius:8px;color:#fff;font-size:14px;text-shadow:0 1px 2px #0008}
+.ic svg{width:60px;display:block;margin:0 auto 4px}.ic.sel{background:rgba(255,255,255,.3);border-color:#fff}
+.win{position:absolute;left:150px;right:12px;top:12px;background:#fff;color:#111;border:2px solid #333;border-radius:10px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:3}
+.win .tb{display:flex;justify-content:space-between;align-items:center;background:#e5e7eb;padding:4px 8px;font-size:14px;font-weight:700}
+.win .tb button{background:#ef4444;color:#fff;border:0;border-radius:6px;font-weight:700;padding:2px 10px}
+.win .bd{padding:8px;height:210px;overflow:hidden}
+.sh{border-collapse:collapse;width:100%;font-size:14px;background:#fff;color:#111}.sh th,.sh td{border:1px solid #d0d7de;padding:3px 8px;text-align:left;font-weight:400}.sh th{background:#f1f3f4;color:#555}
+.cm{position:absolute;z-index:5;background:#fff;color:#111;border:1px solid #888;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.35);padding:4px 0;min-width:160px;font-size:15px}
+.cm div{padding:4px 16px}.cm div:hover{background:#dbeafe}.cm hr{border:0;border-top:1px solid #ddd;margin:3px 0}
+.ck-list{list-style:none;padding:0;margin:0 0 10px;display:grid;gap:6px}.ck-list li{background:var(--soft);border:3px solid var(--line);border-radius:12px;padding:6px 12px}.ck-list li.dn{background:#bbf7d0;color:#14532d}
+.bk{position:absolute;top:70px;width:100px;height:100px;font-size:64px;display:grid;place-items:center;border:4px dashed var(--line);border-radius:18px}
+.bl{position:absolute;top:84px;width:80px;height:80px;font-size:56px;display:grid;place-items:center;z-index:2}
+.dg{cursor:grab;user-select:none;-webkit-user-select:none}.drg{cursor:grabbing;z-index:9;position:relative;filter:drop-shadow(0 6px 6px rgba(0,0,0,.35))}
+.bl.drg{position:absolute}.sel{outline:4px solid var(--blue);border-radius:14px}
+.tgt{border:3px dashed var(--line);border-radius:14px;padding:10px;text-align:center;min-height:120px;display:grid;align-content:center;gap:6px;background:var(--card)}
+.tgt.over,.bk.over{background:#bbf7d0;border-style:solid}.tgt .pc{padding:4px;box-shadow:none;border:0}
+.tgt .en::first-letter,.tgt .id::first-letter{text-transform:uppercase}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+.slot{min-width:110px;padding:10px;border:3px dashed var(--line);border-radius:14px;text-align:center;font-weight:700}
+.slot.f{background:#bbf7d0;color:#14532d;border-style:solid}.slot.a{border-color:var(--blue)}.arw{font-size:26px}
+.tx{font-size:clamp(28px,6vw,44px);font-family:"Courier New",monospace;background:var(--card);border:3px solid var(--line);border-radius:14px;padding:18px;text-align:center;min-height:90px;margin:10px 0}
+.tx .gr{color:var(--mute)}.cr{display:inline-block;width:0;overflow:hidden;height:1.15em;vertical-align:text-bottom;border-left:3px solid var(--org);margin:0 -1.5px;color:transparent;animation:bk 1s steps(1) infinite}.ch{display:inline-block;min-width:.55em;cursor:text}.ch:hover{background:#dbeafe;border-radius:4px}.tx.fx .ch{cursor:default}.tx.fx .ch:hover{background:none}@keyframes bk{50%{opacity:0}}
+.er{background:#fecaca;color:#991b1b;border-radius:4px}.ok2{background:#bbf7d0;color:#14532d;border-radius:4px}
+.kcap{display:inline-block;padding:12px 18px;border:3px solid var(--line);border-radius:10px;background:#e2e8f0;color:#26204a;font-weight:700;box-shadow:0 4px 0 var(--line);margin:4px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:12px 0}
+.kb{display:grid;gap:5px;margin:10px 0;justify-content:center}.kr{display:flex;gap:5px;justify-content:center}.kr:nth-child(2){padding-left:14px}.kr:nth-child(3){padding-left:30px}
+.k{position:relative;width:clamp(24px,5.4vw,42px);height:clamp(26px,5.4vw,42px);border:2px solid var(--line);border-radius:8px;display:grid;place-items:center;font-weight:700;font-size:clamp(11px,2.3vw,17px);color:#26204a;opacity:.5}
+.k.on{opacity:1;transform:scale(1.2);box-shadow:0 0 0 4px var(--blue);z-index:2}.k.bump::after{content:"";position:absolute;bottom:3px;left:32%;right:32%;border-bottom:3px solid #26204a}.k.sp{width:min(48vw,250px)}
+.f-lp,.f-rp{background:#f9a8d4}.f-lr,.f-rr{background:#fdba74}.f-lm,.f-rm{background:#fde047}.f-li,.f-ri{background:#86efac}.f-th{background:#bae6fd}
+.fing{text-align:center;font-weight:700;margin:4px 0}
+.tv{font-size:clamp(26px,6vw,46px);font-family:"Courier New",monospace;letter-spacing:.08em;text-align:center;background:var(--card);border:3px solid var(--line);border-radius:14px;padding:14px;margin:8px 0;min-height:76px;word-break:break-word}
+.tv .d{color:var(--grn)}.tv .c{color:var(--org);border-bottom:4px solid var(--org)}.tv .p{color:var(--mute)}
+.warn{background:#fde68a;color:#7c2d12;border:3px solid #f59e0b;border-radius:12px;padding:8px 12px;font-weight:700;text-align:center;margin:6px 0}
+.pill{display:inline-block;padding:4px 14px;border:3px solid var(--line);border-radius:99px;font-weight:700;background:var(--card);margin:4px 0}.pill.on{background:#fde68a;color:#7c2d12}
+.cin{display:block;width:100%;font:inherit;font-size:20px;padding:10px 12px;border:3px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);margin:4px 0 12px}.cl{display:block;font-weight:700}
+.pf{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:50%;color:#fff;font-weight:700;flex:none}
+.opts button.pb{display:flex;align-items:center;gap:12px}
+.av{width:64px;height:64px;border-radius:50%;object-fit:cover;flex:none}.card .av{display:block;margin:0 auto 6px}.card .ci{margin:0 auto 10px}
+.ci{position:relative;display:inline-block;width:84px;height:84px}.ci svg{width:100%;height:100%}.ci img{position:absolute;right:-8px;bottom:-8px;width:42px;height:42px;border-radius:50%;border:3px solid #fff;background:#fff}
+.opts button.ib{display:grid;place-items:center;padding:18px}.opts.row{grid-template-columns:repeat(2,1fr)}
+.k.hit{transform:scale(1.25);box-shadow:0 0 0 4px var(--org);z-index:3;opacity:1}
+.k small{position:absolute;top:1px;left:0;right:0;text-align:center;font-size:.68em;line-height:1}.k.sh{width:min(13vw,78px);background:#e2e8f0}
+.ks .kr:nth-child(1){padding-left:0}.ks .kr:nth-child(2){padding-left:12px}.ks .kr:nth-child(3){padding-left:26px}.ks .kr:nth-child(4){padding-left:44px}.ks .kr:nth-child(5){padding-left:0}
+.steps{list-style:none;padding:0;margin:0 0 12px;display:grid;gap:6px;counter-reset:none}
+.steps li{display:flex;gap:10px;align-items:center;font-weight:600;cursor:default}
+.steps .n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:14px}
+.steps li.dn .n{background:var(--grn);color:#fff}.steps li.dn{opacity:.65}
+.tg1{color:var(--blue);border-bottom:3px solid var(--blue)}.tg2{color:var(--org);border-bottom:3px solid var(--org)}
+.cl.c1{color:var(--blue)}.cl.c2{color:var(--org)}
+.cin.c1{border-color:var(--blue);box-shadow:0 0 0 3px rgba(59,130,246,.22)}.cin.c2{border-color:var(--org);box-shadow:0 0 0 3px rgba(249,115,22,.22)}
+:root{--soft:#e9e8e3}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--soft:#3b3470}}:root[data-theme="dark"]{--soft:#3b3470}
+.hands{width:100%;max-width:620px;display:block;margin:6px auto}.hands .pulse{animation:pls 1.2s ease-in-out infinite}
+@keyframes pls{50%{opacity:.25}}
+:focus-visible{outline:4px solid var(--blue);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* palet baru: mint, teal, ungu, magenta */
+:root{--bg:#dcf5ee;--ink:#0f3d3a;--card:#ffffff;--line:#0f3d3a;--blue:#0d9488;--org:#d6246e;--grn:#15803d;--sun:#7c5cff;--mute:#477872;--soft:#e8eeed}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b2b2a;--ink:#e6fffb;--card:#12403d;--line:#e6fffb;--mute:#9fd3cc;--soft:#1d5450;--sun:#9d85ff}}
+:root[data-theme="dark"]{--bg:#0b2b2a;--ink:#e6fffb;--card:#12403d;--line:#e6fffb;--mute:#9fd3cc;--soft:#1d5450;--sun:#9d85ff}
+.go{color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .go{color:#0b2b2a}}
+:root[data-theme="dark"] .go{color:#0b2b2a}
+body{background:linear-gradient(180deg,var(--bg),var(--bg))}
+.tv .c{background:rgba(214,36,110,.12)}
+</style></head><body>
+<header><b>⌨️ Typing Tutor</b><span><button id="lg" class="back" aria-pressed="false" title="Bahasa Indonesia">ID ✕</button></span></header>
+<main id="app"></main>
+<script>
+const A=document.getElementById('app');
+const $=h=>{const d=document.createElement('div');d.innerHTML=h.trim();return d.firstChild};
+const bi=(en,id)=>`<span class="en">${en}</span>${id?`<span class="id">${id}</span>`:''}`;
+function snd(f,d){try{const c=snd.c||(snd.c=new(window.AudioContext||window.webkitAudioContext)());const o=c.createOscillator(),g=c.createGain();o.type='triangle';o.frequency.value=f;g.gain.value=.12;o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+(d||.12))}catch(e){}}
+const ok=()=>{snd(660);setTimeout(()=>snd(880),90)},no=()=>snd(180,.2);
+const msg=(en,id,g)=>{const m=A.querySelector('#msg');if(m){m.innerHTML=bi(en,id);m.className='msg '+(g?'good':'bad')}};
+const goBack=()=>start();
+const hdr=t=>`<div class="top"><button class="back" onclick="goBack()">⬅ Menu</button><span>${t}</span></div>`;
+const setLang=on=>{document.body.classList.toggle('noid',!on);const b=document.getElementById('lg');b.textContent=on?'ID ✓':'ID ✕';b.setAttribute('aria-pressed',on)};
+document.getElementById('lg').onclick=()=>setLang(document.body.classList.contains('noid'));
+let tyP=0,tyC=0,tyM={};
+const SKIP=['Shift','CapsLock','Tab','Control','Alt','Meta'];
+const bad=e=>e.repeat||e.ctrlKey||e.metaKey||e.altKey||SKIP.includes(e.key);
+/* keyboard di layar */
+const ROWS=['qwertyuiop','asdfghjkl;','zxcvbnm,.'];
+const FG={q:'lp',a:'lp',z:'lp',w:'lr',s:'lr',x:'lr',e:'lm',d:'lm',c:'lm',r:'li',f:'li',v:'li',t:'li',g:'li',b:'li',y:'ri',h:'ri',n:'ri',u:'ri',j:'ri',m:'ri',i:'rm',k:'rm',',':'rm',o:'rr',l:'rr','.':'rr',p:'rp',';':'rp',' ':'th'};
+const FN={lp:['left pinky','kelingking kiri'],lr:['left ring finger','jari manis kiri'],lm:['left middle finger','jari tengah kiri'],li:['left pointer finger','jari telunjuk kiri'],ri:['right pointer finger','jari telunjuk kanan'],rm:['right middle finger','jari tengah kanan'],rr:['right ring finger','jari manis kanan'],rp:['right pinky','kelingking kanan'],th:['thumb (either one)','ibu jari (yang mana saja)']};
+const fingerOf=c=>FN[FG[c]||'th'];
+const fingerMsg=c=>{const f=fingerOf(c);return bi('Use your '+f[0]+'.','Pakai '+f[1]+'.')};
+const kbHTML=(t,hit)=>{const ts=Array.isArray(t)?t:[t];
+ return ROWS.map(r=>`<div class="kr">${[...r].map(c=>`<div class="k f-${FG[c]}${ts.includes(c)?' on':''}${c===hit?' hit':''}${c==='f'||c==='j'?' bump':''}">${c}</div>`).join('')}</div>`).join('')+`<div class="kr"><div class="k sp f-th${ts.includes(' ')?' on':''}${hit===' '?' hit':''}">Space</div></div>`};
+const tvHTML=(T,k)=>[...T].map((c,i)=>`<span class="${i<k?'d':i===k?'c':'p'}">${c===' '?(i===k?'&nbsp;&nbsp;':'&nbsp;'):c}</span>`).join('');
+const capsOn=e=>!!(e&&e.getModifierState&&e.getModifierState('CapsLock'));
+const capsBanner=e=>{const b=A.querySelector('#cap');if(b)b.style.display=capsOn(e)?'block':'none'};
+function tutor(o,next){
+ const T=o.text;let k=0;
+ A.innerHTML=`${hdr(o.title+' · '+o.lab+' ('+o.idx+'/'+o.total+')')}<h2>${o.h}</h2>${o.ins?`<p class="intro">${o.ins}</p>`:''}<div id="cap" class="warn" style="display:none">${bi('Caps Lock is ON. Press the Caps Lock key once to turn it off.','Caps Lock menyala. Tekan tombol Caps Lock sekali untuk mematikannya.')}</div><div class="tv" id="tv"></div><div class="kb" id="kb"></div><p class="fing" id="fg"></p><p id="msg" class="msg"></p>`;
+ const kb=A.querySelector('#kb'),tv=A.querySelector('#tv'),fg=A.querySelector('#fg');
+ const draw=()=>{tv.innerHTML=tvHTML(T,k);const c=T[k];kb.innerHTML=kbHTML(c||'');fg.innerHTML=c?(c===' '?bi('Press the SPACEBAR with your thumb.','Tekan SPACEBAR dengan ibu jari.'):fingerMsg(c)):''};
+ draw();window.onkeyup=capsBanner;
+ window.onkeydown=e=>{
+  capsBanner(e);if(bad(e))return;if(e.key.length!==1)return;e.preventDefault();
+  tyP++;const want=T[k];
+  if(e.key.toLowerCase()===want){tyC++;k++;snd(520);draw();if(k>=T.length){window.onkeydown=null;window.onkeyup=null;ok();setTimeout(next,900)}}
+  else{tyM[want]=(tyM[want]||0)+1;no();const f=fingerOf(want);
+   msg(want===' '?'Press the SPACEBAR with your thumb.':'Find the letter "'+want+'". Use your '+f[0]+'.',want===' '?'Tekan SPACEBAR dengan ibu jari.':'Cari huruf "'+want+'". Pakai '+f[1]+'.')}}}
+const HFC={p:'#f9a8d4',r:'#fdba74',m:'#fde047',i:'#86efac',t:'#bae6fd'};
+const HF=[['a',56,70,'p'],['s',98,92,'r'],['d',140,104,'m'],['f',182,92,'i'],['j',468,92,'i'],['k',510,104,'m'],['l',552,92,'r'],[';',594,70,'p']];
+const handsHTML=(active,hit)=>{
+ let s='<svg viewBox="0 0 680 260" class="hands" role="img"><title>Hands</title>';
+ s+='<rect x="52" y="170" width="176" height="70" rx="26" fill="#f1d9c4" stroke="#26204a" stroke-width="1.5" opacity=".5"/><rect x="452" y="170" width="176" height="70" rx="26" fill="#f1d9c4" stroke="#26204a" stroke-width="1.5" opacity=".5"/>';
+ HF.forEach(f=>{const l=f[0],x=f[1],h=f[2],on=active.includes(l),hi=hit===l,top=190-h;
+  s+=`<rect x="${x}" y="${top}" width="34" height="${h+20}" rx="17" fill="${HFC[f[3]]}" stroke="${hi?'#185FA5':'#26204a'}" stroke-width="${hi?4:1.5}" opacity="${on?1:.35}"/><text x="${x+17}" y="${top+26}" text-anchor="middle" font-size="18" font-weight="600" font-family="monospace" fill="#26204a" opacity="${on?1:.6}">${l}</text>`;
+  if(hi)s+=`<circle class="pulse" cx="${x+17}" cy="${top+17}" r="28" fill="none" stroke="#378ADD" stroke-width="3" stroke-dasharray="5 4"/>`});
+ const tOn=active.includes(' '),tHi=hit===' ';
+ [['rotate(32 241 207)',226],['rotate(-32 439 207)',424]].forEach(t=>{s+=`<rect x="${t[1]}" y="176" width="30" height="62" rx="15" fill="${HFC.t}" stroke="${tHi?'#185FA5':'#26204a'}" stroke-width="${tHi?4:1.5}" opacity="${tOn?1:.35}" transform="${t[0]}"/>`});
+ s+='<text x="248" y="256" text-anchor="middle" font-size="12" fill="#6b6590">space</text><text x="432" y="256" text-anchor="middle" font-size="12" fill="#6b6590">space</text></svg>';
+ return s};
+function briefing(next){
+ A.innerHTML=`${hdr('Typing Tutor · Finger positions')}<h2>${bi('Where do my fingers go?','Di mana jari-jariku diletakkan?')}</h2>${handsHTML(['a','s','d','f','j','k','l',';',' '],null)}<div class="kb">${kbHTML(['a','s','d','f','j','k','l',';',' '])}</div><div class="two"><div class="card"><h2>${bi('Left hand','Tangan kiri')}</h2><p><b>a s d f</b></p><p>${bi('Pinky on a, ring finger on s, middle finger on d, pointer finger on f.','Kelingking di a, jari manis di s, jari tengah di d, telunjuk di f.')}</p></div><div class="card"><h2>${bi('Right hand','Tangan kanan')}</h2><p><b>j k l ;</b></p><p>${bi('Pointer finger on j, middle finger on k, ring finger on l, pinky on ;.','Telunjuk di j, jari tengah di k, jari manis di l, kelingking di ;.')}</p></div></div><p class="fing">${bi('Feel the small bumps on f and j. Your thumbs rest near the Spacebar. Use either thumb to press it.','Raba tonjolan kecil di f dan j. Kedua ibu jari berada di dekat Spacebar. Pakai ibu jari yang mana saja untuk menekannya.')}</p><button class="go" id="nx">${bi('Next','Lanjut')}</button>`;
+ A.querySelector('#nx').onclick=next}
+function freePractice(o,next){
+ const set=o.keys;let hit=null;
+ A.innerHTML=`${hdr(o.title)}<h2>${o.h}</h2><p class="intro">${o.ins}</p><div id="cap" class="warn" style="display:none">${bi('Caps Lock is ON. Press the Caps Lock key once to turn it off.','Caps Lock menyala. Tekan tombol Caps Lock sekali untuk mematikannya.')}</div><div id="hd"></div><div class="kb" id="kb"></div><p class="fing" id="fg"></p><p id="msg" class="msg"></p><button class="go" id="nx">${bi('Next','Lanjut')}</button>`;
+ const kb=A.querySelector('#kb'),fg=A.querySelector('#fg'),hd=A.querySelector('#hd');
+ const draw=()=>{hd.innerHTML=handsHTML(set,hit);kb.innerHTML=kbHTML(set,hit);const f=hit&&fingerOf(hit),lb=hit===' '?'space':hit;fg.innerHTML=hit?bi(lb+': '+f[0],lb+': '+f[1]):bi('Press each glowing key with its own finger.','Tekan tiap tombol yang menyala dengan jarinya sendiri.')};
+ draw();window.onkeyup=capsBanner;
+ window.onkeydown=e=>{capsBanner(e);if(bad(e))return;if(e.key.length!==1)return;e.preventDefault();const c=e.key.toLowerCase();
+  if(set.includes(c)){hit=c;snd(520);draw();msg('','')}else msg('That key is not part of this hand. Look at the glowing keys.','Tombol itu bukan bagian tangan ini. Lihat tombol yang menyala.')};
+ A.querySelector('#nx').onclick=()=>{window.onkeydown=null;window.onkeyup=null;next()}}
+
+const LV=[
+ ['as as as as','a and s','a dan s','Put your left pinky on a and your left ring finger on s. Press Space with your thumb. Type: <b>as as as as</b>','Letakkan kelingking kiri di a dan jari manis kiri di s. Tekan Spasi dengan ibu jari. Ketik: <b>as as as as</b>'],
+ ['asd asd asd','a s d','a s d','Now add d with your left middle finger. Type: <b>asd asd asd</b>','Sekarang tambahkan d dengan jari tengah kiri. Ketik: <b>asd asd asd</b>'],
+ ['asdf asdf asdf','a s d f','a s d f','Now add f with your left pointer finger. Type: <b>asdf asdf asdf</b>','Sekarang tambahkan f dengan telunjuk kiri. Ketik: <b>asdf asdf asdf</b>'],
+ ['fdsa asdf fdsa asdf','asdf and fdsa','asdf dan fdsa','Go backwards, then forwards. Type: <b>fdsa asdf fdsa asdf</b>','Mundur, lalu maju lagi. Ketik: <b>fdsa asdf fdsa asdf</b>'],
+ ['jk jk jk jk','j and k','j dan k','Put your right pointer finger on j and your right middle finger on k. Press Space with your thumb. Type: <b>jk jk jk jk</b>','Letakkan telunjuk kanan di j dan jari tengah kanan di k. Tekan Spasi dengan ibu jari. Ketik: <b>jk jk jk jk</b>'],
+ ['jkl jkl jkl','j k l','j k l','Now add l with your right ring finger. Type: <b>jkl jkl jkl</b>','Sekarang tambahkan l dengan jari manis kanan. Ketik: <b>jkl jkl jkl</b>'],
+ ['jkl; jkl; jkl;','j k l ;','j k l ;','Now add ; with your right pinky. Type: <b>jkl; jkl; jkl;</b>','Sekarang tambahkan ; dengan kelingking kanan. Ketik: <b>jkl; jkl; jkl;</b>'],
+ [';lkj jkl; ;lkj jkl;','jkl; and ;lkj','jkl; dan ;lkj','Go backwards, then forwards. Type: <b>;lkj jkl; ;lkj jkl;</b>','Mundur, lalu maju lagi. Ketik: <b>;lkj jkl; ;lkj jkl;</b>']];
+function start(){
+ window.onkeydown=null;window.onkeyup=null;tyP=0;tyC=0;tyM={};setLang(false);
+ A.innerHTML=`<div class="card"><div class="big">⌨️</div><h1>${bi('Typing Tutor','Typing Tutor')}</h1><p>${bi('Let us warm up our fingers!','Ayo pemanasan jari-jari kita!')}</p><button class="go" id="go">${bi("Let's go!",'Ayo mulai!')}</button></div>`;
+ A.querySelector('#go').onclick=run}
+function run(){
+ const T='Typing Tutor',tot=LV.length;
+ const lvl=(l,k)=>nx=>tutor({title:T+(k<4?' · Left hand':' · Right hand'),lab:'Level',idx:k+1,total:tot,text:l[0],h:bi('Level '+(k+1)+': '+l[1],'Level '+(k+1)+': '+l[2]),ins:bi(l[3],l[4])},nx);
+ const rs=[nx=>briefing(nx),
+  nx=>freePractice({title:T+' · Left hand',keys:['a','s','d','f',' '],h:bi('Left hand: a s d f and Space','Tangan kiri: a s d f dan Spasi'),ins:bi('Put your left hand on a s d f. Press each key with its own finger. Press Space with either thumb. Take your time, then press Next.','Letakkan tangan kirimu di a s d f. Tekan tiap tombol dengan jarinya sendiri. Tekan Spasi dengan ibu jari yang mana saja. Santai saja, lalu tekan Lanjut.')},nx),
+  ...LV.slice(0,4).map((l,k)=>lvl(l,k)),
+  nx=>freePractice({title:T+' · Right hand',keys:['j','k','l',';',' '],h:bi('Right hand: j k l ; and Space','Tangan kanan: j k l ; dan Spasi'),ins:bi('Put your right hand on j k l ;. Press each key with its own finger. Press Space with either thumb. Take your time, then press Next.','Letakkan tangan kananmu di j k l ;. Tekan tiap tombol dengan jarinya sendiri. Tekan Spasi dengan ibu jari yang mana saja. Santai saja, lalu tekan Lanjut.')},nx),
+  ...LV.slice(4).map((l,k)=>lvl(l,k+4))];
+ let n=0;const go=()=>{if(n>=rs.length){window.onkeydown=null;window.onkeyup=null;return done()}rs[n++](go)};go()}
+function done(){ok();
+ A.innerHTML=`<div class="card"><div class="big">🎉</div><h2>${bi('Great job!','Hebat!')}</h2><p>${bi('You can type asdf and jkl; with your home row fingers!','Kamu bisa mengetik asdf dan jkl; dengan jari-jari home row!')}</p><button class="go" onclick="start()">${bi('Play again','Main lagi')}</button></div>`}
+start();
+</script></body></html>
